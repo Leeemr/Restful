@@ -1,0 +1,12 @@
+projection;
+strict ( 2 );
+//use draft;
+
+define behavior for ZSTRFI13_C_LIST
+{
+
+  use create;
+//  use delete;
+  use update;
+
+}

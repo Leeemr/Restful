@@ -1,0 +1,22 @@
+projection;
+strict ( 2 );
+
+define behavior for ZSTRFI11_C_HEADER //alias <alias_name>
+{
+
+  use update;
+  use delete;
+
+  //  use action refresh;
+
+  use action check_holder;
+  use action post_api;
+  //  use action check_balance;
+
+  use association _PaymentProposalItem;
+}
+
+define behavior for ZSTRFI11_C_ITEM //alias <alias_name>
+{
+  use association _PaymentProposalPayment;
+}

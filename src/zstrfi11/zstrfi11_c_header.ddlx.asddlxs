@@ -1,0 +1,101 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: { typeName: '지급이체요청',
+                  typeNamePlural: '지급이체요청',
+                  title: { type: #STANDARD, label: 'PaymentProposalPayment', value: 'PayeeName' } },
+    presentationVariant: [ { sortOrder: [ { by: 'PaymentRunDate', direction: #DESC } ], visualizations: [ { type: #AS_LINEITEM } ] } ] }
+
+annotate view ZSTRFI11_C_HEADER with
+{
+  @UI.facet: [ { id: 'PaymentProposalPayment',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: '이쳬요청',
+                 position: 10 },
+               { id: 'PaymentProposalItem',
+                 purpose: #STANDARD,
+                 type: #LINEITEM_REFERENCE,
+                 label: '지급전표',
+                 position: 20,
+                 targetElement: '_PaymentProposalItem'} ]
+
+  @UI: { lineItem: [ { position: 10,
+                       importance: #HIGH,
+                       criticality: 'PayeeMatchCriticality',
+                       criticalityRepresentation: #WITHOUT_ICON } ] }
+  PayeeMatch;
+
+  @UI: { lineItem: [ { position: 20,
+                       importance: #HIGH,
+                       criticality: 'APITransStatusCriticality',
+                       criticalityRepresentation: #WITHOUT_ICON } ] }
+  APITrans;
+
+  //  @UI: { lineItem: [ { position: 25,
+  //                       importance: #HIGH } ] }
+  //  ISSUENO;
+
+  @UI: { lineItem: [ { position: 30, importance: #HIGH  } ] }
+  PaymentRunID;
+
+  @UI: { lineItem: [ { position: 40, importance: #HIGH } ],
+         selectionField: [ { position: 10 } ] }
+  Supplier;
+
+  @UI: { lineItem: [ { position: 50, importance: #HIGH } ],
+         identification: [ { position: 20 } ]  }
+  PayeeName;
+
+  @UI: { lineItem: [ { position: 60, importance: #HIGH } ],
+         selectionField: [ { position: 20 } ] }
+  PaymentRunDate;
+
+  @UI: { lineItem: [ { position: 70, importance: #HIGH } ] }
+  PostingDate;
+
+  @UI: { lineItem: [ { position: 80, importance: #HIGH }
+                    ,{ type: #FOR_ACTION, dataAction: 'post_api', label: 'API전송' }
+                    ,{ type: #FOR_ACTION, dataAction: 'check_holder', label: '예금주조회' }
+                    ],
+         identification: [ { position: 40 } ] }
+  PaymentAmountInFunctionalCrcy;
+
+  @UI: { lineItem: [ { position: 90,
+                       importance: #HIGH,
+                       criticality: 'ReverseDocumentStatus',
+                       criticalityRepresentation: #WITHOUT_ICON } ] }
+  ReverseDocument;
+
+  @UI: { lineItem: [ { position: 100, importance: #MEDIUM } ] }
+  PaymentDocument;
+
+  @UI: { lineItem: [ { position: 110, importance: #MEDIUM } ],
+         identification: [ { position: 50 } ] }
+  PayeeBankAccount;
+
+  @UI: { lineItem: [ { position: 120, importance: #MEDIUM } ],
+          identification: [ { position: 60 } ] }
+  PayeeBankAccountHolderName;
+
+  @UI: { lineItem: [ { position: 130, importance: #MEDIUM } ] }
+  PaymentRunIsProposal;
+
+  @UI: { selectionField: [ { position: 30 } ] }
+  PaymentDueDate;
+
+  @UI: { selectionField: [ { position: 40 } ] }
+  PayeeMatchStatus;
+
+  @UI: { selectionField: [ { position: 50 } ] }
+  APITransStatus;
+
+  //  @UI.hidden: true
+  //  ISSUENO;
+
+  @UI.hidden: true
+  LastChangedAt;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+}

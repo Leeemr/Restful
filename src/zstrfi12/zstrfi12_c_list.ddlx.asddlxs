@@ -1,0 +1,178 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: {    typeName: 'ARList',
+                     typeNamePlural: '입금거래내역',
+                     title: { type: #STANDARD, 
+                              label: 'Items', 
+//                               value: 'TransactionDate',
+                             value: 'AccountingDocument', 
+                               criticalityRepresentation: #WITHOUT_ICON } },
+    presentationVariant: [
+     { 
+     groupBy: ['BankAccount'],
+       sortOrder: [ { by: 'TransactionDate', direction: #DESC },
+                     { by: 'TransactionTime', direction: #DESC } ], 
+                     visualizations: [ { type: #AS_LINEITEM } ] } ]
+}
+
+annotate entity ZSTRFI12_C_LIST with
+{
+  @UI.facet: [ { id: 'ARList',
+                purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE,
+                position: 10 } ]
+
+  @UI.selectionField: [ { position: 10 } ]
+  CompanyCode;  
+  
+  @UI: { lineItem: [ { position: 10,
+                       importance: #HIGH } ] }
+  Customer;
+  
+  @UI: { lineItem: [ { position: 20,
+                       importance: #MEDIUM  } ] }
+  CustomerName2;
+  
+    
+  @UI: { selectionField: [ { position: 20 } ] }
+  @UI: { lineItem: [ { position: 30 } ] }
+  TransactionDate;
+  
+  
+  @UI: { lineItem: [ { position: 40 } ] }
+  TransactionTime;
+  
+  @UI.hidden: true
+  status;
+  
+  @UI.hidden: true
+  Status_icon;
+  
+  @UI.hidden: true
+  STATUSNAME2;
+  
+  @UI.hidden: true
+  HouseBank;
+
+  @UI: { lineItem: [ { position: 60 , 
+                       importance: #HIGH, 
+                       criticality : 'Status_icon', 
+                       criticalityRepresentation: #WITH_ICON } ] }
+  @EndUserText.label: '처리결과'
+  STATUSNAME;  
+  
+  @UI: { lineItem: [ { position: 80,
+//                       type: #FOR_INTENT_BASED_NAVIGATION, semanticObjectAction: 'display',
+                       importance: #HIGH                       
+                        } ] }
+  @Consumption.semanticObject: 'AccountingDocument'
+  @Consumption.semanticObjectMapping.element: 'AccountingDocument'
+  AccountingDocument;
+  
+  
+  @UI: { lineItem: [ { position: 110, importance: #HIGH } ] }
+  TransactionDetail;
+  
+  @UI: { lineItem: [ { position: 120 },
+                   { type: #FOR_ACTION, dataAction: 'input', label: '고객 입력' }],
+                   selectionField: [ { position: 30 } ] }
+  BankInternalID;
+  
+    @UI: { lineItem: [ { position: 130 }
+                  ,{ type: #FOR_ACTION, dataAction: 'deleteRB', label: '재처리' }
+                  ] }
+  HouseBankName;
+
+  @UI: { lineItem: [ { position: 150 }
+                   ,{ type: #FOR_ACTION, dataAction: 'deleteAR', label: '처리 제외' }] ,
+         selectionField: [ { position: 40 } ] }
+  HouseBankAccount;
+  
+//  @UI.hidden: true
+  @UI: { lineItem: [ { position: 140 } ] }
+  BankAccount;
+  
+  @UI.hidden: true
+  HouseBankAccountKey;
+
+  @UI: { lineItem: [ { position: 170 ,
+                     importance: #HIGH }
+                   ,{ type: #FOR_ACTION, dataAction: 'post_api', label: '입금 전표 생성' }]}
+  IncomingAmount;
+
+  @UI: { lineItem: [ { position: 190, importance: #HIGH  } ] }
+  OutgoingAmount;
+  
+  @UI: { lineItem: [ { position: 200 , importance: #HIGH  } ] }
+  TransactionAmount;
+  
+  @UI: { lineItem: [ { position: 210 } ]  }
+  CreditAccount;
+
+  @UI: { lineItem: [ { position: 230 } ] }
+  CreditAccountDetail;
+  
+  @UI: { lineItem: [ { position: 250 } ] }
+  GLAccount;
+  
+  @UI: { lineItem: [ { position: 270 } ] }
+  GLAccountName;
+
+  @UI.hidden: true
+  FiscalYear3;
+
+  @UI: { lineItem: [ { position: 290 } ]}
+  FiscalYear;
+  
+  @UI.hidden: true
+  JournalEntryType;
+
+  @UI.hidden: true
+  TransactionKey;
+
+  @UI.hidden: true
+  ReconciliationAccount;
+
+  @UI.hidden: true
+  ReconciliationDetail;
+
+  @UI.hidden: true
+  SequenceNo;
+
+  @UI.hidden: true
+  Waers;
+
+  @UI.hidden: true
+  TransactionGb;
+
+  @UI.hidden: true
+  TransactionGbNumber;
+
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+
+  @UI.hidden: true
+  uuid;
+
+  @UI.hidden: true
+  Customer2;
+
+  @UI.hidden: true
+  CustomerName;
+  
+  }

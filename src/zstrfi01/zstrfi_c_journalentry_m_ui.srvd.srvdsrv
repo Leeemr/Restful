@@ -1,0 +1,4 @@
+@EndUserText.label: '[FI] 부가세 신고 - 신용카드 레포트'
+define service ZSTRFI_C_JOURNALENTRY_M_UI {
+  expose ZSTRFI_C_JOURNALENTRY as JournalEntry;
+}

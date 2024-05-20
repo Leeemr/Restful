@@ -1,0 +1,5 @@
+@EndUserText.label: '[FI] 지급 이체 요청 - Service Definition'
+define service ZSTRFI11_UI_HEADER {
+  expose ZSTRFI11_C_HEADER as PaymentProposalPayment;
+  expose ZSTRFI11_C_ITEM   as PaymentProposalItem;
+}

@@ -1,0 +1,49 @@
+managed implementation in class zstrfi13_bp_list unique;
+strict ( 2 );
+
+define behavior for ZSTRFI13_R_LIST alias TransList
+persistent table zstrfi13_alist
+lock master
+authorization master ( instance )
+{
+  create;
+  update;
+//  delete;
+
+  field ( readonly, numbering : managed ) uuid;
+  field ( readonly ) SequenceNo, CompanyCode, TransactionKey;
+  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy, LocalLastChangedAt;
+
+  mapping for zstrfi13_alist
+    {
+      CompanyCode           = bukrs;
+      uuid                  = uuid;
+      TransactionKey        = tran_key;
+      AccountingDocument    = belnr;
+      FiscalYear            = gjahr;
+      JournalEntryType      = blart;
+      CreditAccount         = caccnt;
+      CreditAccountDetail   = caccntt_dt;
+      ReconciliationAccount = akont;
+      ReconciliationDetail  = akont_dt;
+      SequenceNo            = seq_no;
+      BankInternalID        = ubnkl;
+      BankAccount           = ubknt;
+      TransactionDetail     = jukyo;
+      IncomingAmount        = in_bal;
+      OutgoingAmount        = out_bal;
+      Waers                 = waers;
+      TransactionGb         = tran_gb;
+      TransactionGbName     = tran_gb_nm;
+      status                = status;
+      TransactionTime       = trans_time;
+      TransactionDate       = trans_date;
+      CreatedBy             = created_by;
+      CreatedAt             = created_at;
+      LocalLastChangedBy    = local_last_changed_by;
+      LocalLastChangedAt    = local_last_changed_at;
+      LastChangedBy         = last_changed_by;
+      LastChangedAt         = last_changed_at;
+    }
+
+}

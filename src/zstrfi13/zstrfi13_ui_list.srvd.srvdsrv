@@ -1,0 +1,4 @@
+@EndUserText.label: '[FI] 입출금 거래내역 조회'
+define service ZSTRFI13_UI_LIST {
+  expose ZSTRFI13_C_LIST as TransList;
+}

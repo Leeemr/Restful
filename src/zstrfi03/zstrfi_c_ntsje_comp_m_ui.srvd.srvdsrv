@@ -1,0 +1,5 @@
+@EndUserText.label: '[FI] 세금계산서 기준 대사'
+define service ZSTRFI_C_NTSJE_COMP_M_UI {
+  expose ZSTRFI_C_NTSJE_COMP as InvoiceComp;
+  expose ZSTRFI_C_HOMETAX    as HomeTax;
+}

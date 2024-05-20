@@ -1,0 +1,129 @@
+managed implementation in class zstrfi11_bp_header unique;
+strict ( 2 );
+
+define behavior for ZSTRFI11_R_HEADER alias PaymentProposalPayment
+persistent table zstrfi11_aheader
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  //create;
+  update;
+  delete;
+
+  association _PaymentProposalItem;
+
+  field ( readonly ) PaymentRunDate, PaymentRunID, PaymentRunIsProposal, PayingCompanyCode, Supplier, Customer, PaymentRecipient, PaymentDocument;
+  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy, LocalLastChangedAt;
+
+  //  static action refresh result [0..*] $self;
+
+  action ( features : instance ) check_holder result [1] $self;
+  action ( features : instance ) post_api result [1] $self;
+  action ( features : instance ) check_balance result [1] $self;
+
+
+  mapping for zstrfi11_aheader
+    {
+      PaymentRunDate                = laufd;
+      PaymentRunID                  = laufi;
+      PaymentRunIsProposal          = xvorl;
+      PayingCompanyCode             = zbukr;
+      Supplier                      = lifnr;
+      Customer                      = kunnr;
+      PaymentRecipient              = empfg;
+      PaymentDocument               = vblnr;
+      FinancialAccountType          = koart;
+      SendingCompanyCode            = absbu;
+      PaymentDueDate                = ausfd;
+      CompanyCodeCountry            = land1;
+      PaymentMethod                 = rzawe;
+      PostingDate                   = zaldt;
+      ValueDate                     = valut;
+      BankCountry                   = ubnks;
+      StreetAddressName             = stras;
+      OrganizationBPName1           = name1;
+      OrganizationBPName2           = name2;
+      BankInternalID                = ubnkl;
+      BankAccount                   = ubknt;
+      PayeeBankCountry              = zbnks;
+      BankAccountLongID             = ubknt_long;
+      HouseBank                     = hbkid;
+      HouseBankAccount              = hktid;
+      PayeeName                     = znme1;
+      PayeeAdditionalName           = znme2;
+      Bank                          = ubnky;
+      PayeeBank                     = zbnkl;
+      PayeeBankKey                  = zbnky;
+      PayeeBankAccount              = zbnkn;
+      PayeeBankAccountLongID        = zbnkn_long;
+      PayeeBankAccountHolderName    = koinh;
+      PaymentAmountInFunctionalCrcy = rbetr;
+      PaymentCurrency               = waers;
+      PayeeMatch                    = accnt_match;
+      PayeeMatchStatus              = accnt_m_status;
+      APITrans                      = api_trans;
+      APITransStatus                = api_trans_status;
+      CheckBalance                  = check_balance;
+      ProcessResult                 = process_result;
+      ISSUENO                       = issue_no;
+      CreatedBy                     = created_by;
+      CreatedAt                     = created_at;
+      LocalLastChangedBy            = local_last_changed_by;
+      LocalLastChangedAt            = local_last_changed_at;
+      LastChangedBy                 = last_changed_by;
+      LastChangedAt                 = last_changed_at;
+    }
+
+}
+
+define behavior for ZSTRFI11_R_ITEM alias PaymentProposalItem
+persistent table zstrfi11_aitem
+lock dependent by _PaymentProposalPayment
+authorization dependent by _PaymentProposalPayment
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  association _PaymentProposalPayment;
+
+  field ( readonly ) PaymentRunDate, PaymentRunID, PaymentRunIsProposal, PayingCompanyCode, Supplier, Customer, PaymentRecipient, PaymentDocument;
+  field ( readonly ) CompanyCode, AccountingDocument, FiscalYear, AccountingDocumentItem;
+
+  mapping for zstrfi11_aitem
+    {
+      PaymentRunDate            = laufd;
+      PaymentRunID              = laufi;
+      PaymentRunIsProposal      = xvorl;
+      PayingCompanyCode         = zbukr;
+      Supplier                  = lifnr;
+      Customer                  = kunnr;
+      PaymentRecipient          = empfg;
+      PaymentDocument           = vblnr;
+      CompanyCode               = bukrs;
+      AccountingDocument        = belnr;
+      FiscalYear                = gjahr;
+      AccountingDocumentItem    = buzei;
+      AccountingDocumentType    = blart;
+      DocumentDate              = bldat;
+      DueCalculationBaseDate    = zfbdt;
+      PaymentMethod             = zlsch;
+      PostingDate               = budat;
+      DocumentItemText          = sgtxt;
+      GLAccount                 = hkont;
+      TaxCode                   = mwskz;
+      PaymentCurrency           = waers;
+      DebitCreditCode           = shkzg;
+      BusinessPlace             = bupla;
+      HouseBank                 = hbkid;
+      BankReconciliationAccount = saknr;
+      ConsideredPaymentMethods  = zwels;
+      CreatedBy                 = created_by;
+      CreatedAt                 = created_at;
+      LocalLastChangedBy        = local_last_changed_by;
+      LocalLastChangedAt        = local_last_changed_at;
+      LastChangedBy             = last_changed_by;
+      LastChangedAt             = last_changed_at;
+    }
+}

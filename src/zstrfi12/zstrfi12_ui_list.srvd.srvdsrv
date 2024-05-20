@@ -1,0 +1,4 @@
+@EndUserText.label: '[FI] 입금 거래내역 조회'
+define service ZSTRFI12_UI_LIST {
+  expose ZSTRFI12_C_LIST as ARList;
+}

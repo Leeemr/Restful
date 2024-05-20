@@ -1,0 +1,13 @@
+projection;
+strict ( 2 );
+
+
+define behavior for ZSTRFI_C_JOURNALHOMETAX alias HomeTax
+{
+  use create;
+  use update;
+  use delete;
+
+  use function excel_validation;
+
+}

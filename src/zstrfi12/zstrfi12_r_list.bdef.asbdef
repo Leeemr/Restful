@@ -1,0 +1,96 @@
+managed implementation in class zstrfi12_bp_list unique;
+strict ( 2 );
+//with draft;
+
+define behavior for ZSTRFI12_R_LIST alias ARList
+persistent table zstrfi12_alist
+lock master
+authorization master ( instance )
+{
+  create;
+  update;
+//  delete;
+
+
+  action ( features : instance ) deleteAR result [1] $self;
+  action ( features : instance ) deleteRB result [1] $self;
+  action ( features : instance ) post_api result [1] $self;
+
+  action ( features : instance ) input parameter zstrfi12_a_post result [1] $self;
+
+  action ( features : instance ) postAR result [1] $self;
+
+  field ( readonly, numbering : managed ) uuid;
+  field ( readonly ) SequenceNo, CompanyCode, TransactionKey;
+  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy, LocalLastChangedAt;
+
+  //  mapping for zstrfi12_alist corresponding;
+
+  mapping for zstrfi12_alist
+    {
+      CompanyCode           = bukrs;
+      uuid                  = uuid;
+      TransactionKey        = tran_key;
+      AccountingDocument    = belnr;
+      FiscalYear3           = gjahr;
+      FiscalYear            = gjahr2;
+      Customer              = kunnr;
+      Customer2             = kunnr2;
+      CustomerName          = knunrname;
+      CustomerName2         = knunrname2;
+      JournalEntryType      = blart;
+      CreditAccount         = caccnt;
+      CreditAccountDetail   = caccntt_dt;
+      ReconciliationAccount = akont;
+      ReconciliationDetail  = akont_dt;
+      SequenceNo            = seq_no;
+      BankInternalID        = ubnkl;
+      BankAccount           = ubknt;
+      TransactionDetail     = jukyo;
+      IncomingAmount        = in_bal;
+      OutgoingAmount        = out_bal;
+      Waers                 = waers;
+      TransactionGb         = tran_gb;
+      TransactionGbNumber   = tran_gb_nm;
+      status                = status;
+      TransactionTime       = trans_time;
+      TransactionDate       = trans_date;
+      CreatedBy             = created_by;
+      CreatedAt             = created_at;
+      LocalLastChangedBy    = local_last_changed_by;
+      LocalLastChangedAt    = local_last_changed_at;
+      LastChangedBy         = last_changed_by;
+      LastChangedAt         = last_changed_at;
+    }
+
+
+  //managed implementation in class zstrfi12_bp_list unique;
+  //strict ( 2 );
+  ////with draft;
+  //
+  //define behavior for ZSTRFI12_R_LIST alias ARList
+  //persistent table zstrfi12_alist
+  //lock master
+  ////total etag LastChangedAt
+  //authorization master ( instance )
+  ////etag master LastChangedAt
+  //{
+  //  create;
+  //  update;
+  //  delete;
+  ////  static action post result [1] $self;  //parameter zstrfi12_alist
+  //
+  //  action ( features : instance ) deleteAR result [1] $self;
+  //  action ( features : instance ) postAR result [1] $self;
+  //
+  ////  action inputCust parameter zstrfi12_a_post result [1] $self;
+  //
+  ////  determination post on save { create; }
+  ////  mapping for zstrfi12_alist corresponding;
+  //
+  //  field ( readonly, numbering : managed ) uuid;
+  //  field ( readonly ) TransactionKey, CompanyCode, FiscalYear;
+  //  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy, LocalLastChangedAt;
+  //
+  //
+}

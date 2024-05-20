@@ -1,0 +1,142 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: {    typeName: 'TransList',
+                     typeNamePlural: '입출금거래내역',
+                     title: { type: #STANDARD,
+                              label: 'Items',
+//                               value: 'TransactionDate',
+                             value: 'AccountingDocument',
+                               criticalityRepresentation: #WITHOUT_ICON } },
+    presentationVariant: [
+     { groupBy: ['BankAccount'],
+       sortOrder: [ { by: 'TransactionDate', direction: #DESC },
+                     { by: 'TransactionTime', direction: #DESC } ], 
+                     visualizations: [ { type: #AS_LINEITEM } ] } ]
+}
+
+
+annotate entity ZSTRFI13_C_LIST with
+{
+  @UI.facet: [ { id: 'TransList',
+                purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE,
+                position: 10 } ]
+
+  @UI: { lineItem: [ { position: 20 } ] }
+  @UI: { selectionField: [ { position: 20 } ] }
+  TransactionDate;
+  
+  @UI: { lineItem: [ { position: 40 } ] }
+  TransactionTime;
+     
+  @UI: { lineItem: [ { position: 50 } ] }
+  TransactionGbName;
+
+  @UI: { lineItem: [ { position: 70 } ] }
+  @UI: { selectionField: [ { position: 30 } ] }
+  BankInternalID;
+
+  @UI: { lineItem: [ { position: 80 }] }
+  HouseBankName;
+
+ @UI: { lineItem: [ { position: 90 } ] }
+  BankAccount;
+  
+  @UI: { lineItem: [ { position: 100 } ] }
+  @UI: { selectionField: [ { position: 40 } ] }
+  HouseBankAccount;
+  
+  @UI: { lineItem: [ { position: 120, importance: #HIGH  } ] }
+  TransactionDetail;
+  
+  @UI: { lineItem: [ { position: 160, importance: #HIGH  } ] }
+  IncomingAmount;
+
+  @UI: { lineItem: [ { position: 180, importance: #HIGH  } ] }
+  OutgoingAmount;
+  
+  @UI: { lineItem: [ { position: 200, importance: #HIGH  } ] }
+  TransactionAmount;  
+  
+  @UI.hidden: true
+  CompanyCode;  
+  
+  @UI.hidden: true
+  TransactionGb;
+  
+  @UI.hidden: true
+  status;
+
+  @UI.hidden: true
+  Status_icon;
+
+  @UI.hidden: true
+  STATUSNAME2;
+
+  @UI.hidden: true
+  HouseBank;
+
+  @UI.hidden: true
+  STATUSNAME;
+
+  @UI.hidden: true
+  AccountingDocument;
+
+  @UI.hidden: true
+  HouseBankAccountKey; 
+
+  @UI.hidden: true
+  CreditAccount;
+
+  @UI.hidden: true
+  CreditAccountDetail;
+
+  @UI.hidden: true
+  GLAccount;
+
+  @UI.hidden: true
+  GLAccountName;
+
+  @UI.hidden: true
+  FiscalYear;
+
+  @UI.hidden: true
+  JournalEntryType;
+
+  @UI.hidden: true
+  TransactionKey;
+
+  @UI.hidden: true
+  ReconciliationAccount;
+
+  @UI.hidden: true
+  ReconciliationDetail;
+
+  @UI.hidden: true
+  SequenceNo;
+
+  @UI.hidden: true
+  Waers;
+
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+
+  @UI.hidden: true
+  uuid;
+
+}

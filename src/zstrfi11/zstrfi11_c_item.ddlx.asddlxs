@@ -1,0 +1,27 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { title: { type: #STANDARD, value: 'AccountingDocument' } } }
+
+annotate view ZSTRFI11_C_ITEM with
+{
+  @UI: { lineItem: [ { position: 10 } ] }
+  Supplier;
+
+  @UI: { lineItem: [ { position: 20 } ] }
+  PaymentMethod;
+
+  @UI: { lineItem: [ { position: 30 } ] }
+  AccountingDocument;
+
+  @UI: { lineItem: [ { position: 40 } ] }
+  AmountInTransactionCurrency;
+
+  @UI: { lineItem: [ { position: 50 } ] }
+  PayingCompanyCode;
+
+  @UI: { lineItem: [ { position: 60 } ] }
+  FiscalYear;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

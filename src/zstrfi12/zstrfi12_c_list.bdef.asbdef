@@ -1,0 +1,20 @@
+projection;
+strict ( 2 );
+//use draft;
+
+define behavior for ZSTRFI12_C_LIST
+{
+
+  use create;
+//  use delete;
+  use update;
+
+  use action deleteAR;
+  use action deleteRB;
+  use action input;
+  use action post_api;
+  use action postAR;
+//  use action refresh;
+
+
+}

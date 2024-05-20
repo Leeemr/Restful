@@ -1,0 +1,35 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: {
+        typeName: 'PR 기준 PO-GR-IV 조회',
+        typeNamePlural: '라인'
+    }
+}
+
+annotate view ZSTRFI_C_JOURNALHOMETAX with
+{
+  @UI.lineItem: [{ position: 10 }]
+  HTInputDate;
+
+  @UI.lineItem: [{ position: 20 }]
+  HTApprvNo;
+
+  @UI.lineItem: [{ position: 30 }]
+  HTSupplierNo;
+
+  @UI.lineItem: [{ position: 40 }]
+  HTSupplyAmount;
+
+  @UI.lineItem: [{ position: 50 }]
+  HTSupplier;
+
+  @UI.lineItem: [{ position: 60 }]
+  HTTaxAmount;
+
+  @UI.lineItem: [{ position: 70 }]
+  HTTotalAmount;
+
+  @UI.lineItem: [{ position: 80 }]
+  Currency;
+
+}

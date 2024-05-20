@@ -1,0 +1,40 @@
+managed implementation in class zbp_strfi_r_hometax unique;
+strict ( 2 );
+
+
+define behavior for ZSTRFI_R_HOMETAX alias HomeTax
+persistent table zstrtfi0030
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly : update, numbering : managed ) ID;
+//  field ( mandatory ) HTSupplier, HTTotalAmount, HTSupplierNo, HTApprvNo, HTInputDate, HTSupplyAmount, Currency;
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt, LocalLastChangedBy, LocalLastChangedAt;
+
+  static function excel_validation parameter ZSTRFI_A_IMP_EXCEL result [0..*] ZSTRFI_A_EXP_ERR_02;
+
+
+  mapping for zstrtfi0030
+    {
+      id                 = id;
+      HTApprvNo          = ntsapprvno;
+      HTInputDate        = ntsinputdate;
+      HTSupplier         = ntssupplier;
+      HTSupplierNo       = ntssupplierno;
+      HTSupplyAmount     = ntsnetamount;
+      HTTaxAmount        = ntstaxamount;
+      HTTotalAmount      = ntstotalamount;
+      Currency           = currency;
+      CreatedAt          = created_at;
+      CreatedBy          = created_by;
+      LastChangedAt      = last_changed_at;
+      LastChangedBy      = last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LocalLastChangedBy = local_last_changed_by;
+    }
+}

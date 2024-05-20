@@ -1,0 +1,101 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: '부가세 신고 - 신용카드 레포트',
+    typeNamePlural: 'Lines'
+}
+@UI.presentationVariant: [{
+     requestAtLeast:[ 'ErrorCheck', 'FiscalYear' ]
+     }]
+@UI.lineItem: [{criticality: 'ErrorCheck'}] 
+annotate view ZSTRFI_C_JOURNALENTRY with
+{
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 10 }]
+  CompanyCode;
+
+  @UI.selectionField: [{ position: 20 }]
+  FiscalYear;
+
+  @UI.lineItem: [{ position: 10 }]
+  @UI.lineItem: [
+  {
+    value: 'AccountingDocument',
+    semanticObject: 'AccountingDocument',
+    semanticObjectAction: 'manageV2',
+    type: #WITH_INTENT_BASED_NAVIGATION
+  }
+]
+@Consumption.semanticObject: '  AccountingDocument'
+  AccountingDocument;
+
+  @UI.hidden: true
+  AccountingDocumentType;
+
+  @UI.selectionField: [{ position: 30 }]
+  FiscalPeriod;
+
+  @UI.lineItem: [{ position: 40 }]
+  CountLine;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 40 }]
+  PostingDate;
+
+  @UI.hidden: true
+  DocumentDate;
+
+  @UI.hidden: true
+  TransactionCurrency;
+
+  @UI.hidden: true
+  CompanyCodeName;
+
+  @UI.hidden: true
+  AccountingDocumentTypeName;
+
+  @UI.lineItem: [{ position: 95 }]
+  Supplier;
+
+  @UI.lineItem: [{ position: 105 }]
+  SupplierFullName;
+
+  @UI.hidden: true
+  APAmountInTransactionCurrency;
+
+  @UI.hidden: true
+  APCompanyCodeCurrency;
+
+  @UI.hidden: true
+  APAmountInCompanyCodeCurrency;
+
+  @UI.lineItem: [{ position: 50 }]
+  TaxAmountInTransactionCurrency;
+
+  @UI.hidden: true
+  TaxCompanyCodeCurrency;
+
+  @UI.hidden: true
+  TaxAmountInCompanyCodeCurrency;
+
+  @UI.lineItem: [{ position: 60 }]
+  TaxCode;
+
+  @UI.hidden: true
+  TransactionTypeDetermination;
+
+  @UI.lineItem: [{ position: 40 }]
+  SupplyAmountInTranCurrency;
+
+  @UI.hidden: true
+  SupplyCompanyCodeCurrency;
+
+  @UI.hidden: true
+  SupplyAmountInCompCdCurr;
+
+  @UI.lineItem: [{ position: 80 }]
+  AssignmentReference;
+
+  @UI.lineItem: [{ position: 70 }]
+  DocumentItemText;
+
+}

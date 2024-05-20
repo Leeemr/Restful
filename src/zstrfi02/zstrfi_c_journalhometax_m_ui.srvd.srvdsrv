@@ -1,0 +1,4 @@
+@EndUserText.label: '[FI] 부가세 신고 - 세금계산서'
+define service ZSTRFI_C_JOURNALHOMETAX_M_UI {
+  expose ZSTRFI_C_JOURNALHOMETAX as HomeTax;
+}
